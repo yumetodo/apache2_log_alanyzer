@@ -3,7 +3,7 @@
 #include <utility>
 IUTEST(LineSplitter, LineSplitter)
 {
-    std::pair<const char*, raw_parsed_line> input[] = {
+    constexpr std::pair<const char*, raw_parsed_line> input[] = {
         {
             R"(192.35.168.144 - - [30/Jun/2020:11:30:43 +0900] "GET / HTTP/1.1" 200 3421 "-" "Mozilla/5.0 zgrab/0.x")",
             {
