@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.7)
 enable_language(CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/../cmake/modules)
@@ -9,10 +9,10 @@ set(CMAKE_CXX_EXTENSIONS OFF) #...without compiler extensions like gnu++11
 # Config options
 #
 if((CMAKE_BUILD_TYPE STREQUAL "Debug") AND ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
-    message("you can specify STRING_SPLIT_ENABLE_COVERAGE")
-    option(STRING_SPLIT_ENABLE_COVERAGE "enable coverage" FALSE)
+    message("you can specify APACHE2_LOG_ANALYZER_ENABLE_COVERAGE")
+    option(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE "enable coverage" FALSE)
 else()
-    set(STRING_SPLIT_ENABLE_COVERAGE FALSE)
+    set(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE FALSE)
 endif()
 
 #
@@ -28,7 +28,7 @@ set(basic_test_src
     "./line_splitter.cpp"
 )
 
-if(STRING_SPLIT_ENABLE_COVERAGE)
+if(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE)
     message("coverage enabled")
     include(CodeCoverage)
     APPEND_COVERAGE_COMPILER_FLAGS()
@@ -38,9 +38,9 @@ if(STRING_SPLIT_ENABLE_COVERAGE)
         EXECUTABLE basic_test          # Executable in PROJECT_BINARY_DIR
         DEPENDENCIES basic_test        # Dependencies to build first
     )
-    option(STRING_SPLIT_ENABLE_COVERAGE_HTML "enable coverage result to html" TRUE)
-    option(STRING_SPLIT_ENABLE_COVERAGE_SEND "send coverage result" FALSE)
-    if(STRING_SPLIT_ENABLE_COVERAGE_HTML)
+    option(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE_HTML "enable coverage result to html" TRUE)
+    option(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE_SEND "send coverage result" FALSE)
+    if(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE_HTML)
         message("coverage result to html enabled")
         SETUP_TARGET_FOR_COVERAGE_TO_HTML(
             NAME test_coverage_to_html                 # New target name
