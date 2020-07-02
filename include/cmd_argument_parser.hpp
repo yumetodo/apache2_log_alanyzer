@@ -1,4 +1,4 @@
-﻿#ifndef APACHE2_LOG_ANALYZER_DATE_PARSER_HPP_
+#ifndef APACHE2_LOG_ANALYZER_DATE_PARSER_HPP_
 #define APACHE2_LOG_ANALYZER_DATE_PARSER_HPP_
 #include <optional>
 #include <date/date.h>
@@ -60,17 +60,20 @@ inline date::sys_seconds date_parser(const char* date)
     date::from_stream(ss, "%Y-%m-%d %H:%M:%S %z", tp);
     return tp;
 }
+[[noreturn]] void print_help_and_abort(int code = 1)
+{
+    print_help();
+    std::quick_exit(code);
+}
 }
 inline options cmd_argument_parser(int argc, char** argv)
 {
     using namespace std::string_view_literals;
     if (argc < 3) {
-        detail::print_help();
-        std::quick_exit(1);
+        detail::print_help_and_abort();
     }
     if (argv[1] == "--help"sv) {
-        detail::print_help();
-        std::quick_exit(0);
+        detail::print_help_and_abort(0);
     }
     options re;
     if (argv[1] == "count_by_hour"sv) {
@@ -80,22 +83,19 @@ inline options cmd_argument_parser(int argc, char** argv)
         re.mode = count_mode::count_by_remote;
     }
     else {
-        detail::print_help();
-        std::quick_exit(0);
+        detail::print_help_and_abort();
     }
     int i = 2;
     for (; i < argc; ++i) {
         if (argv[i] == "--since"sv) {
             if (i + 1 < argc)  {
-                detail::print_help();
-                std::quick_exit(0);
+                detail::print_help_and_abort();
             }
             re.since = detail::date_parser(argv[++i]);
         }
         else if (argv[i] == "--until"sv) {
             if (i + 1 < argc)  {
-                detail::print_help();
-                std::quick_exit(0);
+                detail::print_help_and_abort();
             }
             re.until = detail::date_parser(argv[++i]);
         }
