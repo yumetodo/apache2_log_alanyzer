@@ -37,7 +37,7 @@ public:
 
 };
 namespace {
-    std::pair<std::string_view, std::string_view> extract_first_elem(std::string_view s, const char (&corresponding)[3] = "''")
+    inline std::pair<std::string_view, std::string_view> extract_first_elem(std::string_view s, const char (&corresponding)[3] = "''")
     {
         using namespace std::string_literals;
         if (s[0] == corresponding[0]) {
