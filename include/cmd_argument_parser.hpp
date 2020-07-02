@@ -12,6 +12,7 @@ enum class count_mode {
 enum class order_mode {
     descending,
     ascending,
+    chronological,
 };
 struct options {
     count_mode mode;
@@ -54,8 +55,8 @@ OPTIONS
             --until "2019-3-21 8:15:10 -0700"
     --take <n>
         print only n items.
-    --order <ascending|descending>
-        result order. default is descending.
+    --order <ascending|descending|chronological>
+        result order. When operation is count_by_remote, default is descending and chronological cannot be used. When operation is count_by_hour, default is chronological.
     --verbose
         Output progress info, etc.
 )";
@@ -88,6 +89,7 @@ inline options cmd_argument_parser(int argc, char** argv)
     options re;
     if (argv[1] == "count_by_hour"sv) {
         re.mode = count_mode::count_by_hour;
+        re.order = order_mode::chronological;
     }
     else if (argv[1] == "count_by_remote"sv) {
         re.mode = count_mode::count_by_remote;
@@ -126,6 +128,9 @@ inline options cmd_argument_parser(int argc, char** argv)
             }
             else if (argv[i] == "descending"sv) {
                 re.order = order_mode::descending;
+            }
+            else if (re.mode == count_mode::count_by_hour && argv[i] == "chronological"sv) {
+                re.order = order_mode::chronological;
             }
             else {
                 detail::print_help_and_abort();
