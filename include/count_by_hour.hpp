@@ -23,7 +23,7 @@ public:
     {
         const auto dp = std::chrono::floor<date::days>(tp);
         const auto h = date::hh_mm_ss{tp - dp}.hours().count();
-        ++this->table_.at(h - 1);
+        ++this->table_.at(h);
     }
     void read(const raw_parsed_line& line, const options& o)
     {
@@ -45,7 +45,7 @@ private:
         std::size_t n = 0;
         for (auto&& [i, e] : tmp) {
             if (e != 0) {
-                os << std::setw(2) << std::setfill('0') << i + 1 << ':' << e << '\n';
+                os << std::setw(2) << std::setfill('0') << i << ':' << e << '\n';
                 if (++n == take) break;
             }
         }
@@ -56,7 +56,7 @@ public:
         switch(o.order) {
         case order_mode::chronological:
             {
-                std::size_t i = 1;
+                std::size_t i = 0;
                 for (auto&& e : this->table_) {
                     if (e != 0) {
                         os << std::setw(2) << std::setfill('0') << i << ':' << e << '\n';
