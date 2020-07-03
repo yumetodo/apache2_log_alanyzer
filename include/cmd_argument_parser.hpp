@@ -4,6 +4,7 @@
 #include <date/date.h>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 
 enum class count_mode {
     count_by_hour,
@@ -71,10 +72,12 @@ inline date::sys_seconds date_parser(const char* date)
     date::from_stream(ss, "%Y-%m-%d %H:%M:%S %z", tp);
     return tp;
 }
-[[noreturn]] void print_help_and_abort(int code = 1)
+[[noreturn]] inline void print_help_and_abort(int code = 1)
 {
     print_help();
-    std::quick_exit(code);
+    std::exit(code);
+    // mingwではリンクするMSのcrtによって使えない
+    // std::quick_exit(code);
 }
 }
 inline options cmd_argument_parser(int argc, char** argv)
