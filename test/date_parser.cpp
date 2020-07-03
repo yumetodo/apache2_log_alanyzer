@@ -1,4 +1,9 @@
-﻿#include <date/date.h>
+﻿/*=============================================================================
+  Copyright (C) 2020 yumetodo <yume-wikijp@live.jp>
+  Distributed under the Boost Software License, Version 1.0.
+  (See https://www.boost.org/LICENSE_1_0.txt)
+=============================================================================*/
+#include <date/date.h>
 #include <utility>
 #include "../include/date_parser.hpp"
 #include "../iutest/include/iutest.hpp"

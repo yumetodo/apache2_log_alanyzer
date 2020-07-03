@@ -1,4 +1,9 @@
-﻿#ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
+﻿/*=============================================================================
+  Copyright (C) 2020 yumetodo <yume-wikijp@live.jp>
+  Distributed under the Boost Software License, Version 1.0.
+  (See https://www.boost.org/LICENSE_1_0.txt)
+=============================================================================*/
+#ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #define APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #include <optional>
 #include <date/date.h>
