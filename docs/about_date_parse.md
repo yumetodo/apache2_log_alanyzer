@@ -22,3 +22,4 @@ C++20では`std::chrono`名前空間の下にカレンダーと時差を扱え�
 - [year_month_day::operator sys_days - cpprefjp C++日本語リファレンス](https://cpprefjp.github.io/reference/chrono/year_month_day/op_sys_days.html)
 - [minリテラル - cpprefjp C++日本語リファレンス](https://cpprefjp.github.io/reference/chrono/duration/op_min.html)
 - [C++標準ライブラリのカレンダー(Calendar) - yohhoyの日記](https://yohhoy.hatenadiary.jp/entry/20180322/p1)
+- [time - Extract year/month/day etc. from std::chrono::time_point in C++ - Stack Overflow](https://stackoverflow.com/questions/15957805/extract-year-month-day-etc-from-stdchronotime-point-in-c)
