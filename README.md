@@ -65,3 +65,17 @@ cd build
 ./apache2_log_analyzer.exe count_by_remote --take 4 ../docs/log_example.txt
 ./apache2_log_analyzer.exe count_by_remote --since "2020-6-30 12:40:00 +0900" --until "2020-6-30 15:00:00 +0900" ../docs/log_example.txt
 ```
+
+## Dependency
+
+### HowardHinnant/date
+
+Copyright (c) 2016, 2017 Howard Hinnant  
+Released under the MIT license  
+https://github.com/HowardHinnant/date/blob/master/LICENSE.txt
+
+### srz-zumix/iutest
+
+Copyright (c) 2011-2020, Takazumi Shirayanagi  
+Released under the BSD 3-Clause License  
+https://github.com/srz-zumix/iutest/blob/master/LICENSE
