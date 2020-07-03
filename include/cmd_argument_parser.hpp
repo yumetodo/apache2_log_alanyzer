@@ -5,7 +5,6 @@
 =============================================================================*/
 #ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #define APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
-#include <optional>
 #include <date/date.h>
 #include <iostream>
 #include <sstream>
