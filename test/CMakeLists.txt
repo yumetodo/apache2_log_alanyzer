@@ -40,6 +40,7 @@ set(basic_test_src
     "./test.cpp"
     "./line_splitter.cpp"
     "./date_parser.cpp"
+    "./count_by_hour.cpp"
 )
 
 if(APACHE2_LOG_ANALYZER_ENABLE_COVERAGE)
