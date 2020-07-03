@@ -1,4 +1,4 @@
-#ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
+﻿#ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #define APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #include <optional>
 #include <date/date.h>
@@ -57,7 +57,11 @@ OPTIONS
     --take <n>
         print only n items.
     --order <ascending|descending|chronological>
-        result order. When operation is count_by_remote, default is descending and chronological cannot be used. When operation is count_by_hour, default is chronological.
+        result order. When operation is count_by_remote, default is descending
+        and chronological cannot be used. When operation is count_by_hour,
+        default is chronological.
+
+        chronological cannot be combined  with --take.
     --verbose
         Output progress info, etc.
 )";
@@ -145,6 +149,9 @@ inline options cmd_argument_parser(int argc, char** argv)
         else {
             break;
         }
+    }
+    if (re.take && re.order == order_mode::chronological) {
+        detail::print_help_and_abort();
     }
     if (i < argc && argv[i] != "-"sv) {
         re.files = argv + i;
