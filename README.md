@@ -22,7 +22,7 @@ git submodule update --init
 
 - C++ compiler that supports C++17(gcc, clang, msvc...)
 - Some task runner cmake supports. ex.) GNU make, ninja, MSBuild, etc...
-- cmake 3.10.0 or later([to support `/std:` flag for msvc](https://gitlab.kitware.com/cmake/cmake/-/issues/16482))
+- cmake 3.11.0 or later([to use `FetchContent`](https://cliutils.gitlab.io/modern-cmake/chapters/projects/fetch.html))
 - network access to automatically download dependency
 
 ## Build and test(Unix like environment)
