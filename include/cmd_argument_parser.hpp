@@ -43,6 +43,8 @@ OPERATION
         count log data by remote host name.
     -h, --help
         print help
+    -v, --version
+        print version
 OPTIONS
     --since <date>
         count log data after specific date.
@@ -69,6 +71,10 @@ inline void print_help()
 {
     std::cerr << help_text << std::flush;
 }
+inline void print_version()
+{
+    std::cerr << "apache2_log_analyzer version 1.0.0" << std::endl;
+}
 inline date::sys_seconds date_parser(const char* date)
 {
     std::stringstream ss(date);
@@ -87,11 +93,15 @@ inline date::sys_seconds date_parser(const char* date)
 inline options cmd_argument_parser(int argc, char** argv)
 {
     using namespace std::string_view_literals;
-    if (argc < 3) {
+    if (argc < 2) {
         detail::print_help_and_abort();
     }
     if (argv[1] == "--help"sv || argv[1] == "-h"sv) {
         detail::print_help_and_abort(0);
+    }
+    if (argv[1] == "--version"sv || argv[1] == "-v"sv) {
+        detail::print_version();
+        std::exit(0);
     }
     options re;
     if (argv[1] == "count_by_hour"sv) {
