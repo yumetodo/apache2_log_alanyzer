@@ -1,8 +1,6 @@
 ﻿#ifndef APACHE2_LOG_ANALYZER_COUNT_BY_HOUR_HPP_
 #define APACHE2_LOG_ANALYZER_COUNT_BY_HOUR_HPP_
-#include "cmd_argument_parser.hpp"
-#include "line_splitter.hpp"
-#include "date_parser.hpp"
+#include "counter_base.hpp"
 #include <date/date.h>
 #include <chrono>
 #include <array>
@@ -10,7 +8,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <cstdlib>
-class count_by_hour {
+class count_by_hour : public counter_base {
 private:
     std::array<std::size_t, 24> table_{};
     using tmp_array_elem_t = std::pair<std::size_t, std::size_t>;
@@ -30,8 +28,7 @@ public:
     void read(const raw_parsed_line& line, const options& o)
     {
         const auto date = date_parser(line.time);
-        if (date < o.since) return;
-        if (o.until != date::sys_seconds{} && o.until < date) return;
+        if (need_skip_read(date, o)) return;
         this->read(date);
     }
 private:
@@ -79,6 +76,7 @@ public:
             });
             break;
         default:
+            throw std::invalid_argument("not known such a order_mode");
             break;
         }
         os << std::flush;
