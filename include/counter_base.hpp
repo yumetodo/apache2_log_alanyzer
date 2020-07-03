@@ -3,6 +3,7 @@
 #include "cmd_argument_parser.hpp"
 #include "line_splitter.hpp"
 #include "date_parser.hpp"
+#include <type_traits>
 class counter_base {
 protected:
     static bool need_skip_read(date::sys_seconds date, const options& o)
@@ -23,4 +24,8 @@ public:
     counter_base& operator=(const counter_base&) = default;
     counter_base& operator=(counter_base&&) = default;
 };
+template<typename T>
+struct is_counter : std::is_base_of<counter_base, T> {};
+template<typename T>
+inline constexpr bool is_counter_v = is_counter<T>::value;
 #endif
