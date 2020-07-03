@@ -90,7 +90,7 @@ inline options cmd_argument_parser(int argc, char** argv)
     if (argc < 3) {
         detail::print_help_and_abort();
     }
-    if (argv[1] == "--help"sv) {
+    if (argv[1] == "--help"sv || argv[1] == "-h"sv) {
         detail::print_help_and_abort(0);
     }
     options re;
