@@ -1,4 +1,4 @@
-﻿#ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
+#ifndef APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #define APACHE2_LOG_ANALYZER_CMD_ARGUMENT_PARSER_HPP_
 #include <optional>
 #include <date/date.h>
@@ -117,7 +117,7 @@ inline options cmd_argument_parser(int argc, char** argv)
             }
             re.take = std::stoull(argv[++i]);
         }
-        else if (argv[i] == "--order") {
+        else if (argv[i] == "--order"sv) {
             if (i + 1 < argc)  {
                 detail::print_help_and_abort();
             }
