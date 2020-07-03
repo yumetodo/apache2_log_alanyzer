@@ -107,25 +107,25 @@ inline options cmd_argument_parser(int argc, char** argv)
     int i = 2;
     for (; i < argc; ++i) {
         if (argv[i] == "--since"sv) {
-            if (i + 1 < argc)  {
+            if (argc < i + 1)  {
                 detail::print_help_and_abort();
             }
             re.since = detail::date_parser(argv[++i]);
         }
         else if (argv[i] == "--until"sv) {
-            if (i + 1 < argc)  {
+            if (argc < i + 1)  {
                 detail::print_help_and_abort();
             }
             re.until = detail::date_parser(argv[++i]);
         }
         else if (argv[i] == "--take"sv) {
-            if (i + 1 < argc)  {
+            if (argc < i + 1)  {
                 detail::print_help_and_abort();
             }
             re.take = std::stoull(argv[++i]);
         }
         else if (argv[i] == "--order"sv) {
-            if (i + 1 < argc)  {
+            if (argc < i + 1)  {
                 detail::print_help_and_abort();
             }
             ++i;
