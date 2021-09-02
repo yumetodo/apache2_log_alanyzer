@@ -94,7 +94,7 @@ inline date::sys_seconds date_parser(const char* date)
     // std::quick_exit(code);
 }
 }
-inline options cmd_argument_parser(int argc, char** argv)
+inline options cmd_argument_parser(int argc, const char* const* argv)
 {
     using namespace std::string_view_literals;
     if (argc < 2) {
