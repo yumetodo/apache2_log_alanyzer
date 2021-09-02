@@ -40,6 +40,7 @@ project(basic_test)
 #
 set(basic_test_src
     "./test.cpp"
+    "./cmd_argument_parser.cpp"
     "./line_splitter.cpp"
     "./date_parser.cpp"
     "./count_by_hour.cpp"
